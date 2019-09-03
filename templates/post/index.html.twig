@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="posts">
+        {% for post in posts %}
+            <article class="post">
+                <a href="{{ path('post_view', {slug: post.slug}) }}"><h4>{{ post.title }}</h4></a>
+                <time>{{ post.updatedAt | date('d-m-Y H:i') }}</time>
+                <a href="{{ path('app_post_edit', {slug: post.slug}) }}" class="btn btn-success">Edit</a>
+                <a href="{{ path('app_post_delete', {slug: post.slug}) }}" class="btn btn-success">Delete</a>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

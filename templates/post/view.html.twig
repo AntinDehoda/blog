@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+{% endblock %}
+
+{% block body %}
+    <article class="full">
+        <h1>{{ post.title }}</h1>
+        <time>{{ post.updatedAt | date('d-m-Y H:i') }}</time>
+        <div class="content">
+            {{ post.content | raw }}
+        </div>
+        <div class="comments">
+            {% for comment in post.comments %}
+                <div> {{ comment.content }}</div>
+            {% endfor %}
+        </div>
+    </article>
+    {% if is_granted('ROLE_USER') %}
+        {{ include('post/comment_form.html.twig') }}
+    {% endif %}
+    <div class="source">All Posts: <a href="{{ path('home') }}">News Blog</a></div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+{% endblock %}
+
+{% block body %}
+    <section class="posts">
+        <ul>
+    {% for post in posts %}
+        <li class="post">
+            <a href="{{ path('post_view', {slug: post.slug}) }}">
+                <span>{{ post.title }}</span>
+                <time>({{ post.updatedAt | date('d-m-Y H:i') }})</time>
+            </a>
+        </li>
+    {% endfor %}
+        </ul>
+        <div class="navigation">
+            {{ knp_pagination_render(posts) }}
+        </div>
+    </section>
+{% endblock %}
